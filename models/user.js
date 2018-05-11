@@ -26,7 +26,7 @@ const schema = Schema({
             },
             rank: {
                 type: String,
-                enum: ['Junior', 'Senior', 'Master']
+                enum: ['junior', 'senior', 'master']
             }
         }]
     },
@@ -36,10 +36,10 @@ const schema = Schema({
         unique: true
     },
     password: {
-
+        type: String
     },
     salt: {
-
+        type: String
     }
 });
 
