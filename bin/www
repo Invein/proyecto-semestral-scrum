@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('proyecto:server');
 var http = require('http');
+const mongoose = require('mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,23 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/*Conexión a base de datos*/
+//mongodb://<user?>:<password?>@<dominio>:<puerto>/<base de datos>
+//const uri = 'mongodb://localhost:27017/videoclub';
+const uri = 'mongodb://admin:admin@ds151662.mlab.com:51662/scrum-app-uach';
+mongoose.connect(uri);
+const db = mongoose.connection;
+
+db.on('error', () => {
+  console.error('La conexión no se pudo establecer');
+});
+
+db.on('open', () => {
+  server.listen(port, () => {
+    console.log('La conexión a mongo db es exitosa.');
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.
