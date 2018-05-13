@@ -4,12 +4,45 @@ const mongoosePaginate = require('mongoose-paginate');
 
 const projectMemberSchema = Schema({
     member: {
-        type: [Schema.Types.ObjectId],
+        type: Schema.Types.ObjectId,
         ref: 'User'
     },
     role: {
         type: String,
         enum: ['developer', 'tester', 'executive', 'scrum-master', 'product-owner']
+    }
+});
+
+const historySchema = Schema({
+    narrative: {
+        how: {
+            type: String
+        },
+        want: {
+            type: String
+        },
+        way: {
+            type: String
+        }
+    },
+    criteria: {
+        given: {
+            type: String
+        },
+        when: {
+            type: String
+        },
+        then: {
+            type: String
+        }
+    },
+    size: {
+        type: String,
+        required: true
+    },
+    priority: {
+        type: String,
+        required: true
     }
 });
 
@@ -34,29 +67,36 @@ const schema = Schema({
         type: {
             productBacklog: {
                 type: {
-                    histories: [{ type: Schema.Types.ObjectId, ref: "History" }]
+                    histories: [historySchema]
                 }
             },
             releaseBacklog: {
                 type: {
-                    histories: [{ type: Schema.Types.ObjectId, ref: "History" }]
+                    histories: [String]
                 }
             },
             sprints: {
                 type: [{
                     sprintBacklog: {
-                        type: [{ type: Schema.Types.ObjectId, ref: "History" }]
+                        type: {
+                            histories: [String]
+                        }
                     },
                     todo: {
-                        type: [{ type: Schema.Types.ObjectId, ref: "History" }]
+                        type: {
+                            histories: [String]
+                        }
                     },
                     doing: {
-                        type: [{ type: Schema.Types.ObjectId, ref: "History" }]
+                        type: {
+                            histories: [String]
+                        }
                     },
                     done: {
-                        type: [{ type: Schema.Types.ObjectId, ref: "History" }]
-                    },
-                   
+                        type: {
+                            histories: [String]
+                        }
+                    }
                 }]
             }
         }
