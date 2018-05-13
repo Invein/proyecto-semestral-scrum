@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 
 const projectMemberSchema = Schema({
-    developer: {
+    member: {
         type: [Schema.Types.ObjectId],
         ref: 'User'
     },

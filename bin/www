@@ -34,8 +34,9 @@ db.on('error', () => {
 });
 
 db.on('open', () => {
+  console.log('La conexión a mongo db es exitosa.');
   server.listen(port, () => {
-    console.log('La conexión a mongo db es exitosa.');
+    console.log('Servidor escuchando en el puerto: ' + port);
   });
 });
 
@@ -43,7 +44,7 @@ db.on('open', () => {
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+//server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
