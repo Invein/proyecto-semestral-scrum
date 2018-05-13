@@ -1,7 +1,12 @@
 const express = require('express');
-const Project = require('../models/project');
 const bcrypt = require('bcrypt');
 const async = require('async');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+
+const Project = require('../models/project');
+const User = require('../models/user');
+
 
 function index(request, response, next) {
     const page = request.params.page ? request.params.page : 1;
@@ -27,20 +32,22 @@ function index(request, response, next) {
 
 function create(request, response, next) {
     const { name, requestDate, startDate, description, teamMembers, scrum } = request.body;
-
+    
     let project = new Project();
-    project.name = name;
-    project.requestDate = requestDate;
-    project.startDate = startDate;
-    project.description = description;
-    project.teamMembers = teamMembers;
-    project.scrum = scrum;    
+
+    name && (project.name = name);
+    requestDate && (project.requestDate = requestDate);
+    startDate && (project.startDate = startDate);
+    description && (project.description = description);
+    teamMembers && (project.teamMembers = teamMembers);
+    scrum && (project.scrum = scrum);
+
 
     project.save((err, obj) => {
         if (err) {
             response.json({
                 error: true,
-                message: 'Usuario no  Guardado',
+                message: 'Proyecto no  Guardado',
                 objs: err
             });
         } else {
@@ -48,7 +55,7 @@ function create(request, response, next) {
             obj.salt = null;
             response.json({
                 error: false,
-                message: 'usuario Guardado',
+                message: 'Proyecto Guardado',
                 objs: obj
             });
         }
@@ -56,7 +63,36 @@ function create(request, response, next) {
 }
 
 function update(request, response, next) {
-    return response.render("Not implemented yet!");
+    const token = request.body.token || request.query.token || request.headers['x-access-token'];
+    const projectId = request.params.id;
+
+    jwt.verify(token, config.get('api.key'), (err, decoded) => {
+        const id = decoded.id;
+
+        User.findById(id, (err, user) => {
+            if (err) {
+                response.json({
+                    error: err,
+                    message: 'Error al buscar el usuario',
+                    objs: {}
+                });
+            } else {
+                Project.findById(projectId, (err, project) => {
+                    if (err) {
+                        response.json({
+                            error: err,
+                            message: 'Error al buscar el proyecto',
+                            objs: {}
+                        });
+                    } else {
+                        scrumMaster = project.teamMembers.find((teamMember) => {
+                            return teamMember._id;
+                        });
+                    }
+                });
+            }
+        });
+    });
 }
 
 function remove(request, response, next) {

@@ -16,11 +16,13 @@ function index(request, response, next) {
                 objs: {}
             });
         } else {
+            objs.docs.map(obj => { obj.password = null, obj.salt = null });
+                        
             response.json({
-                error: false,
-                message: 'Lista de Usuarios',
-                objs: objs
-            });
+                    error: false,
+                    message: 'Lista de Usuarios',
+                    objs: objs
+                });
         }
     });
 }
