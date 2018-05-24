@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    if links
+      each link in links
+        link(rel=link.rel, href=link.href)
+    if scripts   
+      each script in scripts
+        script(src=script.src)
+  body
+    div(class="wrapper")      
+      include components/sidebar.pug
+      div(id="content")
+        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+            <i class="glyphicon glyphicon-align-left"></i>
+            | Toggle Sidebar
+        </button>
+        block content

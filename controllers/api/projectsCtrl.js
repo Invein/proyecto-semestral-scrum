@@ -4,8 +4,8 @@ const async = require('async');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-const Project = require('../models/project');
-const User = require('../models/user');
+const Project = require('../../models/project');
+const User = require('../../models/user');
 
 
 function index(request, response, next) {

@@ -1,5 +1,35 @@
 {
-  "api":{
-    "key":"52d0380eb37d6d4666fddbd82daf5ee3"
+  "api": {
+    "key": "52d0380eb37d6d4666fddbd82daf5ee3"
+  },
+  "view": {
+    "head": {
+      "links": [
+        {
+          "name": "Bootstrap",
+          "rel": "stylesheet",
+          "href": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        },
+        {
+          "name": "Styles",
+          "rel": "stylesheet",
+          "href": "stylesheets/style.css"
+        }
+      ],
+      "scripts": [
+        {
+          "name": "JQuery",
+          "src": "https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        },
+        {
+          "name": "Bootstrap",
+          "src": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        },
+        {
+          "name": "Main",
+          "src": "scripts/main.js"
+        }
+      ]
+    }
   }
 }
