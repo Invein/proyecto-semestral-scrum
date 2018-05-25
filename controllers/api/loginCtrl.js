@@ -1,6 +1,7 @@
 const async = require('async');
 const User = require('../../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 module.exports = function (request, response, next) {
     const email = request.body.email;
