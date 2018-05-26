@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    title= title
+    if links
+      each link in links
+        link(rel=link.rel, href=link.href)
+    if scripts   
+      each script in scripts
+        script(src=script.src)
+  body
+    block content
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2 main">
+               
+                <!--col-sm-6-->
+
+                <div id="formregister" class="col-sm-12">
+                    <h1 id="titleregister">Registro</h1>
+                    <p id="formtext">Por favor, ingrese los siguientes datos para comenzar en Scrum.</p>
+
+                    <!--div with header-->
+                    <div id="login-form"  class="form" >
+                        <div class="form-group">
+                            <label for="name">Nombre completo:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo:</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" name="password" class="form-control">
+                            <p id="notepassword" class="help-block">La contraseña tiene que tener mas de 4 caracteres</p>
+                        </div>
+
+                        <div class="form-group">
+                             <label for="password-confirm">Comfirmar contraseña:</label>
+                             <input type="password" id="passowrd-confirm" name="password" class="form-control">
+                             <p id="notepassword" class="help-block">Porfavor, confirma tu contraseña</p>
+                        </div>
+    
+                        <div class="text-xs-center">
+                            <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Registrar<a/>
+                        </div>
+
+                    </div>
+                    <!--/Form with header-->
+
+                </div>
+                <!--col-sm-6-->
+
+
+            </div>
+            <!--col-sm-8-->
+
+        </div>
+  
+        <!--container-->
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="scripts/loginForm.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>

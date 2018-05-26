@@ -277,13 +277,14 @@ padding:0px;
 }
 .fb:focus, .fb:hover{color:FFF !important;}
 body{
-background-image:url(https://i.ytimg.com/vi/Q3_fuZVyFtY/maxresdefault.jpg);
+background-image:url(http://www.freejpg.com.ar/asset/OLD/comps/f002974.jpg);
 font-family: 'Raleway', sans-serif;
+background-size: cover;
 }
 
 .left-side{
 	padding:0px 0px 100px;
-	background:#9100ff;
+	background:#31708f;
 	background-size:cover;
 }
 .left-side h1{
@@ -354,4 +355,31 @@ box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);}
 	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
 -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
 box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+}
+#register-btn{
+    width: 100px;
+    margin-right: 48px;
+}
+#notepassword{
+    padding: 0px;
+    font-size: 10px;
+}
+#formregister{
+    background-color: white;
+}
+#titleregister{
+    text-align: center;
+}
+#formtext{
+    text-align: center;
+}
+a#login-btn {
+    margin-bottom: 20px;
+}
+#leftside{
+    background-image: url("https://freerange.com/wp-content/uploads/2017/05/stefan-stefancik-square.jpg");
+    height: 514px;
+}
+#loginwith{
+    color: black;
 }
