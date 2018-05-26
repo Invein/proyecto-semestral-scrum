@@ -24,9 +24,9 @@ $(document).ready(function () {
     function onSubmit() {
         const data = {};
 
-        $("#login-form").find('input').each(function (i, tag) {
-            if (tag.type != "submit") {
-                data[tag.name] = tag.value;
+        $("#login-form").find('input').each(function (i, node) {
+            if (node.type != "submit") {
+                data[node.name] = node.value;
             }
         });
 
