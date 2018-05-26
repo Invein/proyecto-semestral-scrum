@@ -25,11 +25,18 @@ module.exports = function (request, response, next) {
                     let token = jwt.sign(payload, key, {
                         expiresIn: 86400
                     });
+
                     response.json({
                         error: false,
                         message: 'Usuario y password ok',
                         objs: {
-                            token: token
+                            token: token,
+                            user: {
+                                fullName: user.fullName,
+                                email: user.email,
+                                skills: user.skills,
+                                id: user._id
+                            }
                         }
                     });
                 } else {
