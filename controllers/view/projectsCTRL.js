@@ -9,7 +9,7 @@ function index(request, response, next) {
             next();
         }
         else {
-            pugLoader(response, 'view/projects/projects.pug', { projects });
+            pugLoader.renderWithUser(request, response, 'view/projects/projects.pug', { projects });
         }
     });
 };
@@ -22,7 +22,7 @@ function viewOne(request, response, next) {
                 response.json({ err });
             } else {
                 if (project) {
-                    pugLoader(response, 'view/projects/showOne.pug', { project });
+                    pugLoader.renderWithUser(request, response, 'view/projects/showOne.pug', { project });
                 } else {
                     response.json({ err });
                 }

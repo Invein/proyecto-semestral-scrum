@@ -1,7 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const pugLoader = require('../util/lib/pugLoader');
 
 function verifyToken(request, response, next) {
   const token = request.body.token || request.query.token || request.headers['x-access-token'];
@@ -30,8 +29,7 @@ function verifyTokenOnViews(request, response, next) {
   const token = request.body.token || request.query.token || request.headers['x-access-token'] || request.headers.token;
   if (token) {
     jwt.verify(token, config.get('api.key'), (err, decoded) => {
-      if (err) {
-        //pugLoader(response, "view/index/login");
+      if (err) {        
         response.redirect('/login');
       } else {
         next();

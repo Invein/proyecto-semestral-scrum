@@ -30,7 +30,7 @@ function renderView({ path, body = {}, params }) {
         success: function (response, str, stats) {
             // document.write(response);
             // window.history.pushState({}, null, viewUrl({ path }));
-            document.location.replace(viewUrl({ path, params: { token, ...params } }));
+            document.location.href = viewUrl({ path, params: { token, ...params } });
         }
     });
 }
