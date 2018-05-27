@@ -20,10 +20,10 @@ html
                     <p id="formtext">Por favor, ingrese los siguientes datos para comenzar en Scrum.</p>
 
                     <!--div with header-->
-                    <div id="login-form"  class="form" >
+                    <form id="register-form"  class="form" >
                         <div class="form-group">
                             <label for="name">Nombre completo:</label>
-                            <input type="text" id="name" name="name" class="form-control">
+                            <input type="text" id="name" name="fullName" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -38,16 +38,16 @@ html
                         </div>
 
                         <div class="form-group">
-                             <label for="password-confirm">Comfirmar contraseña:</label>
+                             <label for="password-confirm">Confirmar contraseña:</label>
                              <input type="password" id="passowrd-confirm" name="password" class="form-control">
                              <p id="notepassword" class="help-block">Porfavor, confirma tu contraseña</p>
                         </div>
     
                         <div class="text-xs-center">
-                            <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Registrar<a/>
+                            <input type="submit" id="login-btn" name="login-btn" value="Registrar" class="btn btn-deep-purple">
                         </div>
 
-                    </div>
+                    </form>
                     <!--/Form with header-->
 
                 </div>
@@ -63,6 +63,6 @@ html
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="scripts/loginForm.js"></script>
+        <script src="/scripts/registerForm.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
