@@ -10,6 +10,7 @@ function apiUrl({ path }) {
 
 function viewUrl({ path, params }) {
     let url = "http://" + document.location.host + "/" + path
+    
     if (params) {
         url += "?";
         let first = true;

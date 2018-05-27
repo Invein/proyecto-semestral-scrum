@@ -33,7 +33,12 @@ function viewOne(request, response, next) {
     }
 }
 
+function create(request, response, next) {
+    pugLoader.renderWithUser(request, response, 'view/projects/createForm.pug');
+}
+
 module.exports = {
     index,
-    viewOne
+    viewOne,
+    create
 };

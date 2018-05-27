@@ -1,0 +1,44 @@
+extends ../../layout
+
+block content
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 main">            
+            <!--col-sm-6-->
+            <div id="formregister" class="col-sm-12">
+                <h1 id="titleregister">Nuevo Proyecto</h1>
+                <p id="formtext">Por favor, ingrese los siguientes datos para crear su proyecto.</p>
+
+                <!--div with header-->
+                <div id="login-form"  class="form" >
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Descripcion:</label>
+                        <textarea cols="30" rows="5" type="text" id="email" name="email" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Descripción:</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                        <p id="notepassword" class="help-block">La contraseña tiene que tener mas de 4 caracteres</p>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="password-confirm">Comfirmar contraseña:</label>
+                            <input type="password" id="passowrd-confirm" name="password" class="form-control">
+                            <p id="notepassword" class="help-block">Porfavor, confirma tu contraseña</p>
+                    </div>
+
+                    <div class="text-xs-center">
+                        <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Registrar<a/>
+                    </div>
+                </div>
+                <!--/Form with header-->
+            </div>
+            <!--col-sm-6-->
+        </div>
+        <!--col-sm-8-->
+    </div>
