@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "post",
-            url: "http://localhost:3000/api/login",
+            url: apiUrl({ path: "login" }),
             data,
             success: function (response, str, stats) {
                 const { error, objs, message } = response;
@@ -41,8 +41,9 @@ $(document).ready(function () {
                 if (error) {
                     $("#info").html("<div class='alert alert-danger'>" + message + "</div>");
                 } else {
-                    handleCache.set({ user: { token, ...user } });
-                    document.location.replace("http://localhost:3000?token=" + token);
+                    window.localStorage.setItem('token', token);
+                    window.localStorage.setItem('user', JSON.stringify(user));
+                    renderView({ path: "" });
                 }
             }
         });

@@ -9,7 +9,7 @@ html
       each script in scripts
         script(src=script.src)
   body
-    div(class="wrapper")      
+    div(class="wrapper" id="root")      
       include components/sidebar.pug
       div(id="content")
         <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
