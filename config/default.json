@@ -14,7 +14,7 @@
         {
           "name": "Styles",
           "rel": "stylesheet",
-          "href": "stylesheets/style.css"
+          "href": "/stylesheets/style.css"
         }
       ],
       "scripts": [
@@ -36,7 +36,7 @@
         },
         {
           "name": "Main",
-          "src": "scripts/main.js"
+          "src": "/scripts/main.js"
         }
       ]
     }

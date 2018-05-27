@@ -398,3 +398,15 @@ a#login-btn {
 .cardbody{
     padding-top: 50px;
 }
+.leftNav{
+    align-content: left;
+}
+.centerNav{
+    align-content: center;
+}
+.rightNav{
+    align-content: right;
+}
+.navMain{
+    width: 1200px;
+}
