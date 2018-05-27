@@ -9,12 +9,16 @@
           "name": "Bootstrap",
           "rel": "stylesheet",
           "href": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          
         },
         {
           "name": "Styles",
           "rel": "stylesheet",
           "href": "/stylesheets/style.css"
+        },
+        {
+          "name": "Project styles",
+          "rel": "stylesheet",
+          "href": "/stylesheets/projects.css"
         }
       ],
       "scripts": [
