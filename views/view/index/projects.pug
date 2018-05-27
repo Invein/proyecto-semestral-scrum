@@ -1,0 +1,20 @@
+extend ../../layout
+
+block content
+    <div class="container">
+        <div class="row">
+            each project in data.projects                                
+                <div class="col-lg-4"> 
+                    <div>
+                        <div class="card cardimage" style="width: 18rem;" >
+                            <div class="card-body">
+                                <b class="card-text">#{project.name}</b>
+                                <p>#{project.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+

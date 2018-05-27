@@ -3,7 +3,7 @@ const config = require('config');
 const pugLoader = require('../../util/lib/pugLoader');
 
 function index(request, response, next) {
-  pugLoader(response, 'view/index/index.pug');
+  pugLoader(response, 'view/index/dashboard.pug');
 };
 
 function login(request, response, next) {
@@ -13,6 +13,7 @@ function login(request, response, next) {
 function register(request, response, next) {
   pugLoader(response, 'view/index/register.pug');
 };
+
 
 module.exports = {
   index,

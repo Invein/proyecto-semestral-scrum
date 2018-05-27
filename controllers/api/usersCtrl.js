@@ -28,47 +28,6 @@ function index(request, response, next) {
     });
 }
 
-function create(request, response, next) {
-    const { fullName, birthdate, curp, rfc, address, skills, email, password } = request.body;
-
-    let user = new User();
-    user.fullName = fullName;
-    user.birthdate = birthdate;
-    user.curp = curp;
-    user.rfc = rfc;
-    user.address = address;
-    user.skills = skills;
-    user.email = email;
-
-    const saltRounds = 10;
-
-    bcrypt.genSalt(saltRounds, function (err, salt) {
-        bcrypt.hash(password, salt, function (err, hash) {
-
-            user.password = hash;
-            user.salt = salt;
-
-            user.save((err, obj) => {
-                if (err) {
-                    response.json({
-                        error: true,
-                        message: 'Usuario no  Guardado',
-                        objs: err
-                    });
-                } else {
-                    obj.password = null;
-                    obj.salt = null;
-                    response.json({
-                        error: false,
-                        message: 'usuario Guardado',
-                        objs: obj
-                    });
-                }
-            });
-        });
-    });
-}
-
 function update(request, response, next) {
     const { fullName, birthdate, curp, rfc, address } = request.body;
     const id = request.params.id;
@@ -357,7 +316,6 @@ function removeSkill(request, response, next) {
 
 module.exports = {
     index,
-    create,
     update,
     remove,
     putSkill,
