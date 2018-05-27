@@ -26,8 +26,7 @@ function verifyToken(request, response, next) {
   }
 }
 
-function verifyTokenOnViews(request, response, next) {
-  return next();
+function verifyTokenOnViews(request, response, next) {  
   const token = request.body.token || request.query.token || request.headers['x-access-token'] || request.headers.token;
   if (token) {
     jwt.verify(token, config.get('api.key'), (err, decoded) => {

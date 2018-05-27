@@ -20,7 +20,7 @@ module.exports = function (request, response, next) {
             bcrypt.hash(password, user.salt, function (err, hash) {
                 if (hash === user.password) {
                     const payload = {
-                        id: user._id
+                        id: user.id
                     };
                     let token = jwt.sign(payload, key, {
                         expiresIn: 86400
