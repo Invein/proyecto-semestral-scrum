@@ -1,0 +1,15 @@
+div(id="skill-form-container")
+    form(id="skill-form" name="rank" class="form")
+        div(class="form-group")
+            label(for="rank-select") Rango:
+            <select class="form-control" id="rank-select" name="rank">
+                option Junior
+                option Senior
+                option Master
+            </select>
+        div(class="form-group")
+            label(for="name") Habilidad:
+            input(id="name" type="text" name="name" class="form-control" placeholder="nombre de la habilidad")
+        div(id="info-skill")
+        div(class="text-xs-center")            
+            input(type="submit" class="btn btn-deep-purple" value="agregar")

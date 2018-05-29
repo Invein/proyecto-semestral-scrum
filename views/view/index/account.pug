@@ -14,7 +14,7 @@ block content
                     <p id="formtext">Por favor, ingrese los siguientes datos.</p>
 
                     <!--div with header-->
-                    <div id="login-form"  class="form" >
+                    <form id="user-form"  class="form" >
                         <div class="form-group">
                             <label for="name">Nombre:</label>
                             input(type="text" id="name" name="name" class="form-control" value=data.user.fullName)
@@ -27,7 +27,7 @@ block content
 
                          <div class="form-group">
                             <label for="email">Fecha de nacimiento:</label>
-                            input( type="date" name="birthdate" step="1" value=value=data.user.birthdate)
+                            input( type="text" name="birthdate" class="form-control" value=value=data.user.birthdate)
                         </div>
 
                         <div class="form-group">
@@ -43,25 +43,25 @@ block content
                         <div class="form-group">
                             <label for="name">Domicilio:</label>
                             input( type="text" id="domicilio" name="address" class="form-control" value=data.user.address)
-                        </div>
+                        </div>                        
 
-
-                        <div class="form-group">
-                            include ../../components/skillsInfo.pug
-                            div(id="skills-container" class="skills-container")
-                                each skill in data.user.skills
-                                    div(class="skill-tag")
-                                        span(class=skill.rank + "-tag") #{skill.name}                                        
-                                        div #{data.user.birthdate}
-                        </div>
-    
+                        div(id="info-user")
                         <div class="text-xs-center">
-                            <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Guardar<a/>
+                            <input type="submit" id="login-btn" name="login-btn" value="Guardar" class="btn btn-deep-purple">
                         </div>
 
-                    </div>
+                    </form>
                     <!--/Form with header-->
-
+                    div(class="skills-header")
+                        include ../../components/skillsInfo.pug
+                        span Habilidades:
+                    div(id="skills-container" class="skills-container")
+                        each skill in data.user.skills           
+                            span(class=skill.rank + "-tag tag") #{skill.name}
+                                icon(class="tag-remove-btn glyphicon glyphicon-trash" id=skill._id)
+                        span(class="add-tag tag" id="add-tag") agregar                                
+                            icon(class="glyphicon glyphicon-plus" id="add-skill-btn")
+                        include ../../components/skillTagForm.pug                
                 </div>
                 <!--col-sm-6-->
 
@@ -75,6 +75,6 @@ block content
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="scripts/loginForm.js"></script>
+        <script src="scripts/accountForm.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>

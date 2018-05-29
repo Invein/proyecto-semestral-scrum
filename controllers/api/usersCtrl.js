@@ -5,7 +5,7 @@ const async = require('async');
 const getIdFromToken = require('../../util/lib/getIdFromToken');
 
 function index(request, response, next) {
-    const page = request.params.page ? request.params.page : 1;
+    const page = request.params.page || request.query.page || 1;
     User.paginate({}, {
         page: page,
         limit: 3
@@ -79,9 +79,9 @@ function update(request, response, next) {
                         });
                     }
                 });
-            }else{
+            } else {
                 response.json({
-                    error:true,
+                    error: true,
                     message: "Error, se esta tratando de modificar otro usuario",
                     objs: {}
                 });
@@ -220,98 +220,99 @@ function register(request, response, next) {
     });
 };
 function putSkill(request, response, next) {
-    const id = request.params.userId;
-    const skill = request.body.skill;
+    getIdFromToken(request, function (err, userId) {
+        const { name, rank } = request.body;
+        const skill = { name, rank: rank.toLowerCase() }
 
-    if (id && skill) {
-        User.findById(id, (error, doc) => {
-
-            if (!error) {
-                if (doc) {
-                    doc.skills.push(skill);
-                    doc.save((error, savedDoc) => {
-                        if (error) {
-                            response.json({
-                                error: true,
-                                message: 'No se pudo guardar',
-                                objs: {}
-                            });
-                        } else {
-                            response.json({
-                                error: false,
-                                message: 'Se guardo correctamente',
-                                objs: {}
-                            });
-                        }
-                    })
+        if (userId) {
+            User.findById(userId, (error, doc) => {
+                if (!error) {
+                    if (doc) {
+                        doc.skills.push(skill);
+                        doc.save((error, savedDoc) => {
+                            if (error) {
+                                response.json({
+                                    error,
+                                    message: 'No se pudo guardar',
+                                    objs: {}
+                                });
+                            } else {
+                                response.json({
+                                    error: false,
+                                    message: 'Se guardo correctamente',
+                                    objs: {}
+                                });
+                            }
+                        })
+                    } else {
+                        response.json({
+                            error: true,
+                            message: 'No se encontro el id',
+                            objs: {}
+                        });
+                    }
                 } else {
                     response.json({
-                        error: true,
-                        message: 'No se encontro el id',
+                        error,
+                        message: 'Tienes un error',
                         objs: {}
                     });
                 }
-            } else {
-                response.json({
-                    error: true,
-                    message: 'Tienes un error',
-                    objs: {}
-                });
-            }
-        });
-    }
-    else {
-        response.json({
-            error: true,
-            message: 'id o skill no recibido',
-            objs: {}
-        });
-    }
+            });
+        }
+        else {
+            response.json({
+                error: true,
+                message: 'id invalido',
+                objs: {}
+            });
+        }
+    });
 }
 function removeSkill(request, response, next) {
-    const id = request.params.userId;
-    const skillId = request.params.skillId;
+    getIdFromToken(request, function (err, userId) {
+        const skillId = request.params.skillID;
+        if (skillId) {
+            User.findById(userId, (error, doc) => {
+                if (!error) {
+                    if (doc) {
+                        const filteredSkills = doc.skills.filter((skill) => {
+                            return skill._id != skillId;
+                        });
 
-    if (id && skillId) {
-        User.findById(id, (error, doc) => {
-            if (!error) {
-                if (doc) {
-                    const filteredSkills = doc.skills.filter((skill) => {
-                        return skill._id != skillId;
-                    });
-
-                    doc.skills = filteredSkills;
-                    doc.save((error, savedDoc) => {
-                        if (error) {
-                            response.json({
-                                error: true,
-                                message: 'No se pudo guardar',
-                                objs: {}
-                            });
-                        } else {
-                            response.json({
-                                error: false,
-                                message: 'Se removio corractamente',
-                                objs: {}
-                            });
-                        }
-                    })
+                        doc.skills = filteredSkills;
+                        doc.save((error, savedDoc) => {
+                            if (error) {
+                                response.json({
+                                    error: true,
+                                    message: 'No se pudo guardar',
+                                    objs: {}
+                                });
+                            } else {
+                                response.json({
+                                    error: false,
+                                    message: 'Se removio corractamente',
+                                    objs: {}
+                                });
+                            }
+                        })
+                    } else {
+                        response.json({
+                            error: true,
+                            message: 'No se encontro el id',
+                            objs: {}
+                        });
+                    }
                 } else {
                     response.json({
                         error: true,
-                        message: 'No se encontro el id',
+                        message: 'id o skill no encontrado',
                         objs: {}
                     });
                 }
-            } else {
-                response.json({
-                    error: true,
-                    message: 'id o skill no encontrado',
-                    objs: {}
-                });
-            }
-        });
-    }
+            });
+        }
+    });
 }
 
 module.exports = {

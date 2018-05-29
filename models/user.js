@@ -2,6 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 
+const skillSchema = Schema({
+    name: {
+        type: String,
+    },
+    rank: {
+        type: String,
+        enum: ['junior', 'senior', 'master']
+    }
+});
+
 const schema = Schema({
     fullName: {
         type: String,
@@ -20,15 +30,7 @@ const schema = Schema({
         type: String
     },
     skills: {
-        type: [{
-            name: {
-                type: String,                
-            },
-            rank: {
-                type: String,
-                enum: ['junior', 'senior', 'master']
-            }
-        }]
+        type: [skillSchema]
     },
     email: {
         type: String,

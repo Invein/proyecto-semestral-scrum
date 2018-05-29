@@ -1,9 +1,48 @@
-.master-tag{
+.tag {
+    border-radius: 10px;
+    padding: 3px 7px;    
+    font-weight: bold;
+    display: inline-flex;
+    margin: 10px 10px;
+    background-color: palegreen;
+    box-shadow: grey 5px 5px 5px;
+}
+.master-tag {
     background-color: gold;
 }
-.senior-tag{
+.senior-tag {
     background-color: orange;
 }
-.junior-tag{
-    background-color: green;
+.junior-tag {
+    background-color: olivedrab;
+}
+
+.tag-remove-btn {
+    
+}
+
+.tag-remove-btn:hover{
+    cursor: pointer;    
+}
+
+.skills-container{
+    border: solid  #9100ff 1px;
+    border-radius: 10px;
+    margin: 10px 50px;
+    padding-bottom: 10px;
+}
+
+.add-tag:hover{
+    cursor: pointer;
+}
+
+#skill-form-container {    
+   padding: 40px;
+   display: none;
+}
+
+.skills-header {
+    margin: 10px 50px;
+    font-weight: 700;
+    font-size: 14px;
 }
