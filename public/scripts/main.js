@@ -4,13 +4,18 @@ $(document).ready(function () {
     });
 });
 
-function apiUrl({ path }) {
-    const token = window.localStorage.getItem('token');
-    return "http://" + document.location.host + "/api/" + path + "?token=" + token;
+function getProtocol() {
+    return (document.location.hostname == "localhost") ? "http://" : "https://";
 }
 
+function apiUrl({ path }) {
+    const token = window.localStorage.getItem('token');
+    return getProtocol() + document.location.host + "/api/" + path + "?token=" + token;
+}
+
+
 function viewUrl({ path, params }) {
-    let url = "http://" + document.location.host + "/" + path
+    let url = getProtocol() + document.location.host + "/" + path
 
     if (params) {
         url += "?";

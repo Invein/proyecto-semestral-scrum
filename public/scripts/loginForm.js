@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $("#register-btn").click(function () {
+        renderView({ path: "register" });
+    });
+
     $("#login-form").validate({
         rules: {
             email: {
