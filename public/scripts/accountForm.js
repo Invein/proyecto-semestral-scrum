@@ -68,7 +68,7 @@ $(document).ready(function () {
     function onUserSubmit() {
         const data = {};
 
-        $("#user-form").find('input["text"]').each(function (i, node) {
+        $("#user-form").find('input[type=text]').each(function (i, node) {
             if (node.type != "submit") {
                 data[node.name] = node.value;
             }
@@ -76,18 +76,15 @@ $(document).ready(function () {
 
         $.ajax({
             type: "put",
-            url: apiUrl({ path: "user" }),
+            url: apiUrl({ path: "users" }),
             data,
             success: function (response, str, stats) {
-                const { error, objs, message } = response;
-                const { user, token } = objs;
+                const { error, objs, message } = response;                
 
                 if (error) {
-                    $("#info-user").html("<div class='alert alert-danger'>" + message + "</div>");
+                    $("#info-user").html("<div class='alert alert-danger'>" + (error.message || objs.message || message) + "</div>");
                 } else {
-                    window.localStorage.setItem('token', token);
-                    window.localStorage.setItem('user', JSON.stringify(user));
-                    renderView({ path: "" });
+                    location.reload();
                 }
             }
         });
@@ -112,19 +109,19 @@ $(document).ready(function () {
             data,
             success: function (response, str, stats) {
                 const { error, objs, message } = response;
-                const { user, token } = objs;
+                const { name, rank, _id } = objs;
 
                 if (error) {
                     $("#info-skill").html("<div class='alert alert-danger'>" + (error.message || objs.message || message) + "</div>");
                 } else {
-                    renderView({ path: "account" });
+                    location.reload();
                 }
             }
         });
     }
 
     $("#add-tag").click(function () {
-        $("#skill-form-container").css("display", "initial")
+        $("#skill-form-container").css("display", "initial");
     })
 
 
@@ -132,14 +129,14 @@ $(document).ready(function () {
         tag.onclick = function () {
             $.ajax({
                 type: "delete",
-                url: apiUrl({ path: "users/skills/" + tag.id }),                
+                url: apiUrl({ path: "users/skills/" + tag.id }),
                 success: function (response, str, stats) {
-                    const { error, objs, message } = response;                    
+                    const { error, objs, message } = response;
 
                     if (error) {
                         $("#info-skill").html("<div class='alert alert-danger'>" + (error.message || objs.message || message) + "</div>");
                     } else {
-                        renderView({ path: "account" });
+                        $("#" + tag.id).parent().remove();
                     }
                 }
             });

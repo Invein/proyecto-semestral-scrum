@@ -17,7 +17,7 @@ block content
                     <form id="user-form"  class="form" >
                         <div class="form-group">
                             <label for="name">Nombre:</label>
-                            input(type="text" id="name" name="name" class="form-control" value=data.user.fullName)
+                            input(type="text" id="name" name="fullName" class="form-control" value=data.user.fullName)
                         </div>
 
                         <div class="form-group">
@@ -59,8 +59,7 @@ block content
                         each skill in data.user.skills           
                             span(class=skill.rank + "-tag tag") #{skill.name}
                                 icon(class="tag-remove-btn glyphicon glyphicon-trash" id=skill._id)
-                        span(class="add-tag tag" id="add-tag") agregar                                
-                            icon(class="glyphicon glyphicon-plus" id="add-skill-btn")
+                        span(class="add-tag tag" id="add-tag") agregar                            
                         include ../../components/skillTagForm.pug                
                 </div>
                 <!--col-sm-6-->

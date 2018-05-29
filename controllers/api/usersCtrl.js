@@ -29,73 +29,59 @@ function index(request, response, next) {
 }
 
 function update(request, response, next) {
-    const { fullName, birthdate, curp, rfc, address } = request.body;
-    const id = request.params.id;
-
-    if (id) {
-        getIdFromToken(request, (err, decodedId) => {
-            if (decodedId == id) {
-
-
-                User.findById(id, (error, doc) => {
-                    if (!error) {
-                        if (doc) {
-
-                            doc.fullName = fullName || doc.fullName;
-                            doc.birthdate = birthdate || doc.birthdate;
-                            doc.curp = curp || doc.curp;
-                            doc.rfc = rfc || doc.rfc;
-                            doc.address = address || doc.address;
-                            doc.save((error, savedDoc) => {
-                                if (error) {
-                                    response.json({
-                                        error: error,
-                                        message: 'No se pudo guardar tus cambios',
-                                        objs: {}
-                                    });
-                                }
-                                else {
-                                    response.json({
-                                        error: false,
-                                        message: 'Se guardo correctamente',
-                                        objs: {}
-                                    });
-                                }
-                            });
-                        }
-                        else {
-                            response.json({
-                                error: true,
-                                message: 'El usuario no existe',
-                                objs: {}
-                            });
-                        }
+    getIdFromToken(request, function (err, userId) {
+        if (userId) {
+            const { fullName, birthdate, curp, rfc, address } = request.body;
+            User.findById(userId, (error, doc) => {
+                if (!error) {
+                    if (doc) {
+                        doc.fullName = fullName || doc.fullName;
+                        doc.birthdate = birthdate || doc.birthdate;
+                        doc.curp = curp || doc.curp;
+                        doc.rfc = rfc || doc.rfc;
+                        doc.address = address || doc.address;
+                        doc.save((error, savedDoc) => {
+                            if (error) {
+                                response.json({
+                                    error: error,
+                                    message: 'No se pudo guardar tus cambios',
+                                    objs: {}
+                                });
+                            }
+                            else {
+                                response.json({
+                                    error: false,
+                                    message: 'Se guardo correctamente',
+                                    objs: {}
+                                });
+                            }
+                        });
                     }
                     else {
                         response.json({
-                            error,
-                            message: "Tienes un error",
+                            error: true,
+                            message: 'El usuario no existe',
                             objs: {}
                         });
                     }
-                });
-            } else {
-                response.json({
-                    error: true,
-                    message: "Error, se esta tratando de modificar otro usuario",
-                    objs: {}
-                });
-            }
-        });
-    }
-    else {
-        response.json({
-            error: true,
-            message: 'No se encontro el id del usuario',
-            objs: {}
-        });
-    }
-
+                }
+                else {
+                    response.json({
+                        error,
+                        message: "Tienes un error",
+                        objs: {}
+                    });
+                }
+            });
+        }
+        else {
+            response.json({
+                error: true,
+                message: 'No se encontro el id del usuario',
+                objs: {}
+            });
+        }
+    });
 }
 
 function remove(request, response, next) {
