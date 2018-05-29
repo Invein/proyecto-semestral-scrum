@@ -16,41 +16,43 @@ block content
                     <!--div with header-->
                     <div id="login-form"  class="form" >
                         <div class="form-group">
-                            <label for="name">Nombre completo:</label>
-                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name">Nombre:</label>
+                            input(type="text" id="name" name="name" class="form-control" value=data.user.fullName)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Correo:</label>
+                            input(type="text" id="email" name="email" class="form-control" value=data.user.email)
                         </div>
 
                          <div class="form-group">
                             <label for="email">Fecha de nacimiento:</label>
-                            <input type="date" name="cumpleanios" step="1" min="1800-01-01" max="2018-12-31" value="<?php echo date("Y-m-d");">
+                            input( type="date" name="birthdate" step="1" value=value=data.user.birthdate)
                         </div>
 
                         <div class="form-group">
                             <label for="name">Curp:</label>
-                            <input type="text" id="curp" name="curp" class="form-control">
+                            input( type="text" id="curp" name="curp" class="form-control" value=data.user.curp)
                         </div>
 
                         <div class="form-group">
                             <label for="name">RFC:</label>
-                            <input type="text" id="rfc" name="rfc" class="form-control">
+                            input( type="text" id="rfc" name="rfc" class="form-control" value=data.user.rfc)
                         </div>
 
                         <div class="form-group">
                             <label for="name">Domicilio:</label>
-                            <input type="text" id="domicilio" name="domicilio" class="form-control">
+                            input( type="text" id="domicilio" name="address" class="form-control" value=data.user.address)
                         </div>
 
 
                         <div class="form-group">
-                            <label for="habilidades">Lista de habilidades:</label>
-                            <select class="form-control">
-                                <option>Junior</option>
-                                <option>Master</option>
-                                <option>Senior</option>
-                            </select>
-                            <label for="habilidades">En:</label>
-                            <input type="text" id="habilidads" name="habilidades" class="form-control">
-                            <label for="habilidades">Agregar otro campo?:</label>
+                            include ../../components/skillsInfo.pug
+                            div(id="skills-container" class="skills-container")
+                                each skill in data.user.skills
+                                    div(class="skill-tag")
+                                        span(class=skill.rank + "-tag") #{skill.name}                                        
+                                        div #{data.user.birthdate}
                         </div>
     
                         <div class="text-xs-center">

@@ -6,5 +6,6 @@ const verifyTokenOnViews = require('../../middlewares/securityMiddleware').verif
 router.get('/', verifyTokenOnViews, indexCtrl.index);
 router.get('/login', indexCtrl.login);
 router.get('/register', indexCtrl.register);
+router.get('/account', indexCtrl.account);
 
 module.exports = router;

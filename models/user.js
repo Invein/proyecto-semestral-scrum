@@ -22,7 +22,7 @@ const schema = Schema({
     skills: {
         type: [{
             name: {
-                type: String
+                type: String,                
             },
             rank: {
                 type: String,

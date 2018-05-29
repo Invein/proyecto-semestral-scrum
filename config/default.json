@@ -19,6 +19,11 @@
           "name": "Project styles",
           "rel": "stylesheet",
           "href": "/stylesheets/projects.css"
+        },
+        {
+          "name": "Account styles",
+          "rel": "stylesheet",
+          "href": "/stylesheets/account.css"
         }
       ],
       "scripts": [

@@ -14,9 +14,13 @@ function register(request, response, next) {
   pugLoader.render(request, response, 'view/index/register.pug');
 };
 
+function account(request, response, next) {
+  pugLoader.renderWithUser(request, response, 'view/index/account.pug');
+};
 
 module.exports = {
   index,
   login,
-  register
+  register,
+  account
 };
