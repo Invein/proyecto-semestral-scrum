@@ -2,15 +2,29 @@ const express = require('express');
 const config = require('config');
 const pugLoader = require('../../util/lib/pugLoader');
 const Project = require('../../models/project');
-
+const getID = require('../../util/lib/getIdFromToken');
+const ObjectId = require('mongoose').Types.ObjectId;
 function index(request, response, next) {
-    Project.find({}, function (err, projects) {
-        if (err) {
-            next();
-        }
-        else {
-            pugLoader.renderWithUser(request, response, 'view/projects/projects.pug', { projects });
-        }
+    getID(request, (err, userID) => {
+        Project.find({})
+            .exec((err, projects = []) => {
+                const filteredProjects = projects.filter((project) => {
+                    if (project.owner.toString() == userID) {
+                        return true;
+                    } else {
+                        for (let proyect of projects) {
+                            for (let teamMember of proyect.teamMembers) {
+                                if (teamMember.member.toString() == userID) return true;
+                            }
+                        }
+                    }
+                });
+
+                if (err)
+                    return next(err);
+                else
+                    return pugLoader.renderWithUser(request, response, 'view/projects/projects.pug', { projects: filteredProjects });
+            });
     });
 };
 
