@@ -9,16 +9,18 @@ const getID = require('../../util/lib/getIdFromToken');
 function index(request, response, next) {
     getID(request, (err, userID) => {
         Project.find({})
+            .populate('owner')
+            .populate('teamMembers.member')
             .exec((err, projects = []) => {
                 const filteredProjects = projects.filter((project) => {
-                    if (project.owner.toString() == userID) {
+                    if (project.owner.id == userID) {
                         return true;
                     } else {
-                        for (let proyect of projects) {
-                            for (let teamMember of proyect.teamMembers) {
-                                if (teamMember.member.toString() == userID) return true;
-                            }
-                        }
+                        const isIn = project.teamMembers.find((teamMember) => {
+                            return teamMember.member.id == userID;
+                        });
+                        if (isIn) return true;
+                        else return false;
                     }
                 });
 
