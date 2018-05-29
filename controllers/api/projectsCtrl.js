@@ -38,7 +38,7 @@ function create(request, response, next) {
             request.json({ error: true, message: "Error al buscar el id del usuario", objs: err });
         } else {
             if (ownerID) {
-                const { name, requestDate, startDate, description, teamMembers, scrum } = request.body;
+                const { name, requestDate, startDate, description, scrum } = request.body;
 
                 let project = new Project();
 
@@ -46,8 +46,6 @@ function create(request, response, next) {
                 requestDate && (project.requestDate = requestDate);
                 startDate && (project.startDate = startDate);
                 description && (project.description = description);
-                teamMembers && (project.teamMembers = teamMembers);
-                scrum && (project.scrum = scrum);
                 ownerID && (project.owner = ownerID);
 
                 project.save((err, obj) => {
@@ -310,7 +308,7 @@ function deleteTeamMember(request, response, next) {
             });
 
             project.teamMembers = filteredTeamMembers;
-            
+
             project.save((err, savedProject) => {
                 if (err)
                     return next(err);
