@@ -1,0 +1,78 @@
+extend ../../layout
+
+block content
+        <div id="container" class="container">
+            <div class="col-sm-8 col-sm-offset-2 main">
+               
+                <!--col-sm-6-->
+
+                <div id="formregister" class="col-sm-12">
+                    <h1 id="titleregister">Configuracion de usuario</h1>
+                    <div class="text-center">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSODALYDYo2dqN0DG_kPNi2X7EAy1K8SpRRZQWkNv9alC62IHggOw" class="rounded" alt="...">
+                    </div>
+                    <p id="formtext">Por favor, ingrese los siguientes datos.</p>
+
+                    <!--div with header-->
+                    <div id="login-form"  class="form" >
+                        <div class="form-group">
+                            <label for="name">Nombre completo:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+
+                         <div class="form-group">
+                            <label for="email">Fecha de nacimiento:</label>
+                            <input type="date" name="cumpleanios" step="1" min="1800-01-01" max="2018-12-31" value="<?php echo date("Y-m-d");">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Curp:</label>
+                            <input type="text" id="curp" name="curp" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">RFC:</label>
+                            <input type="text" id="rfc" name="rfc" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Domicilio:</label>
+                            <input type="text" id="domicilio" name="domicilio" class="form-control">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="habilidades">Lista de habilidades:</label>
+                            <select class="form-control">
+                                <option>Junior</option>
+                                <option>Master</option>
+                                <option>Senior</option>
+                            </select>
+                            <label for="habilidades">En:</label>
+                            <input type="text" id="habilidads" name="habilidades" class="form-control">
+                            <label for="habilidades">Agregar otro campo?:</label>
+                        </div>
+    
+                        <div class="text-xs-center">
+                            <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Guardar<a/>
+                        </div>
+
+                    </div>
+                    <!--/Form with header-->
+
+                </div>
+                <!--col-sm-6-->
+
+
+            </div>
+            <!--col-sm-8-->
+
+        </div>
+  
+        <!--container-->
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="scripts/loginForm.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>

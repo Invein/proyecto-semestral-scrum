@@ -1,23 +1,27 @@
 extend ../../layout
 
 block content
-    <link rel="stylesheet" href="/stylesheets/projects.css"/>
+
     <div class="container">
         <div class="row" id="project-container">
             each project in data.projects                                
                 div(id=project._id class="col-lg-4")                    
-                    <div class="card cardimage" style="width: 18rem;" >
-                        <div class="card-body">
+                    <div class="card cardimage pointer" style="width: 24rem;" >
+                        <div class="card-body ">
                             <b class="card-text">#{project.name}</b>
                             <p>#{project.description}</p>
                         </div>
                     </div>
             div(id="add-project-btn" class="col-lg-4")                
-                <div class="card cardimage" style="width: 18rem;" >
+                <div class="card cardimage pointer" style="width: 18rem;" >
                     <div class="card-body">
                         <span class="glyphicon glyphicon-plus"><b>Crear</b></span>
                     </div>
                 </div>                
         </div>
     </div>
+    <div class="panel panel-primary">
+        <p> Puto el que lo lea</p>
+    </div>
+
     <script src="/scripts/projectsBehavior.js"> </script>

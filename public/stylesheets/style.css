@@ -383,21 +383,7 @@ a#login-btn {
 #loginwith{
     color: black;
 }
-.white-background{
-    background-color: #fff;
-    width: 1200px;
-    height: 900px;
-}
-.cardimage{
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Folder-icon.png);
-    width: auto;
-    height: 210px;
-}
-.cardbody{
-    padding-top: 50px;
-}
+
 .leftNav{
     align-content: left;
 }
@@ -409,4 +395,7 @@ a#login-btn {
 }
 .navMain{
     width: 1200px;
+}
+.cardimage{
+
 }

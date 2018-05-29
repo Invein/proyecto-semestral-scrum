@@ -1,0 +1,33 @@
+.white-background{
+    background-color: #fff;
+    width: 1200px;
+    height: 900px;
+}
+.cardimage{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background: white;
+    height: 210px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+.card-body{
+}
+.cardText{
+    font-size: 20px;
+}
+b{
+    font-size: 24px;
+}
+p{
+    color: black
+}
+.titleProject{
+    font-size: 20px;
+    color: black;
+}
+.bodyProject{
+    font-size: 14px;
+    color: black;
+}
