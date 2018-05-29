@@ -5,12 +5,13 @@ $(document).ready(function () {
 });
 
 function apiUrl({ path }) {
-    return "http://" + document.location.host + "/api/" + path;
+    const token = window.localStorage.getItem('token');
+    return "http://" + document.location.host + "/api/" + path + "?token=" + token;
 }
 
 function viewUrl({ path, params }) {
     let url = "http://" + document.location.host + "/" + path
-    
+
     if (params) {
         url += "?";
         let first = true;

@@ -49,17 +49,3 @@ $(document).ready(function () {
         });
     }
 });
-
-// $(document).ready(function () {
-//     $("#login-btn").click(function () {
-//         const values = {};
-//         $("#login-form").find('input').each(function (i, tag) {
-//             values[tag.name] = tag.value;
-//         });
-//         axios.post("http://localhost:3000/api/login", values).then((response) => {
-//             const { token, user } = response.data.objs;
-//             handleCache.set({ user: { token, ...user } });
-//             document.location.replace("http://localhost:3000?token=" + token);
-//         });
-//     });
-// });

@@ -7,6 +7,8 @@ const config = require('config');
 const Project = require('../../models/project');
 const User = require('../../models/user');
 
+const getID = require('../../util/lib/getIdFromToken');
+
 
 function index(request, response, next) {
     const page = request.params.page ? request.params.page : 1;
@@ -31,32 +33,43 @@ function index(request, response, next) {
 }
 
 function create(request, response, next) {
-    const { name, requestDate, startDate, description, teamMembers, scrum } = request.body;
-
-    let project = new Project();
-
-    name && (project.name = name);
-    requestDate && (project.requestDate = requestDate);
-    startDate && (project.startDate = startDate);
-    description && (project.description = description);
-    teamMembers && (project.teamMembers = teamMembers);
-    scrum && (project.scrum = scrum);
-
-    project.save((err, obj) => {
+    getID(request, function (err, ownerID) {
         if (err) {
-            response.json({
-                error: true,
-                message: 'Proyecto no  Guardado',
-                objs: err
-            });
+            request.json({ error: true, message: "Error al buscar el id del usuario", objs: err });
         } else {
-            obj.password = null;
-            obj.salt = null;
-            response.json({
-                error: false,
-                message: 'Proyecto Guardado',
-                objs: obj
-            });
+            if (ownerID) {
+                const { name, requestDate, startDate, description, teamMembers, scrum } = request.body;
+
+                let project = new Project();
+
+                name && (project.name = name);
+                requestDate && (project.requestDate = requestDate);
+                startDate && (project.startDate = startDate);
+                description && (project.description = description);
+                teamMembers && (project.teamMembers = teamMembers);
+                scrum && (project.scrum = scrum);
+                ownerID && (project.owner = ownerID);
+
+                project.save((err, obj) => {
+                    if (err) {
+                        response.json({
+                            error: true,
+                            message: 'Proyecto no  Guardado',
+                            objs: err
+                        });
+                    } else {
+                        obj.password = null;
+                        obj.salt = null;
+                        response.json({
+                            error: false,
+                            message: 'Proyecto Guardado',
+                            objs: obj
+                        });
+                    }
+                });
+            } else {
+                request.json({ error: true, message: "Error al buscar el id del usuario", objs: err });
+            }
         }
     });
 }
