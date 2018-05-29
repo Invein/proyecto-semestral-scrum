@@ -4,7 +4,7 @@ const pugLoader = require('../../util/lib/pugLoader');
 const Project = require('../../models/project');
 
 function index(request, response, next) {
-    Project.find({}, (err, projects) => {
+    Project.find({}, function (err, projects) {
         if (err) {
             next();
         }
@@ -17,17 +17,20 @@ function index(request, response, next) {
 function viewOne(request, response, next) {
     const projectID = request.params.id;
     if (projectID) {
-        Project.findById(projectID, (err, project) => {
-            if (err) {
-                response.json({ err });
-            } else {
-                if (project) {
-                    pugLoader.renderWithUser(request, response, 'view/projects/showOne.pug', { project });
-                } else {
+        Project.findById(projectID)
+            .populate('teamMembers.member')
+            .populate('owner')
+            .exec(function (err, project) {
+                if (err) {
                     response.json({ err });
+                } else {
+                    if (project) {
+                        pugLoader.renderWithUser(request, response, 'view/projects/showOne.pug', { project });
+                    } else {
+                        response.json({ err });
+                    }
                 }
-            }
-        });
+            });
     } else {
         response.json({ err: true });
     }

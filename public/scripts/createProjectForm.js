@@ -9,26 +9,50 @@ $(document).ready(function () {
             },
             startDate: {
                 required: true,
-                date: true
             },
             requestDate: {
                 required: true,
-                date: true
             }
         },
         messages: {
-            password: {
-                required: "Introduzca una contraseña"
+            name: {
+                required: "Introduzca un nombre"
             },
-            email: {
-                required: "Introduzca un Email",
-                email: "E-mail no válido"
+            description: {
+                required: "Introduzca una descripción"
             },
+            startDate: {
+                required: "Introduzca una fecha de arranque",
+            },
+            requestDate: {
+                required: "Introduzca una fecha de Entrega",
+            }
         },
         submitHandler: onSubmit
     });
 
-    function onsubmit() {
+    function onSubmit(arg, arg2) {
+        const data = {};
 
+        $("#create-project-form").find('input').each(function (i, node) {
+            if (node.type != "submit") {
+                data[node.name] = node.value;
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: apiUrl({ path: "projects" }),
+            data,
+            success: function (response, str, stats) {
+                const { error, objs, message } = response;
+
+                if (error) {
+                    $("#info").html("<div class='alert alert-danger'>" + ( error.message || objs.message || message)  + "</div>");
+                } else {
+                    renderView({ path: "projects/" + objs._id });
+                }
+            }
+        });
     }
 });

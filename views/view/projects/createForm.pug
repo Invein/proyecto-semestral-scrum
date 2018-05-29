@@ -12,26 +12,29 @@ block content
                         <label for="name">Nombre:</label>
                         <input type="text" id="name" name="name" class="form-control">
                     </div>
-
-                    <div class="form-group">
-                        <label for="description">Descripcion:</label>
-                        <textarea cols="30" rows="5" type="text" id="description" name="description" class="form-control"></textarea>
-                    </div>  
+                    
                     <div class="form-group">
                         <label for="description">Fecha de Arranque:</label>                        
-                        <input type="date" name="startDate" step="1" min="1800-01-01" max="2058-12-31" value="<?php echo date("Y-m-d");">                                 
+                        <input type="text" name="startDate" class="form-control" >                                 
                     </div>  
 
                      <div class="form-group">
                         <label for="description">Fecha de Entrega:</label>                        
-                        <input type="date" name="requestDate" step="1" min="1800-01-01" max="2058-12-31" value="<?php echo date("Y-m-d");">                                 
+                        <input type="text" name="requestDate" class="form-control"  >                                 
+                    </div>  
+
+                    <div class="form-group">
+                        <label for="description">Descripcion:</label>
+                        <input cols="30" rows="5" type="textarea" id="description" name="description" class="form-control"/>
                     </div>  
 
                     <div class="text-xs-center">
-                        <a type="button" id="login-btn" name="login-btn" value="Register" class="btn btn-deep-purple">Registrar<a/>
+                        div(id="info")
+                        <input type="submit" id="create-btn" name="create-btn"  class="btn btn-deep-purple" value="Crear"/>                        
                     </div>
                 </form>                
             </div>            
         </div>        
     </div>
     script(src="/scripts/createProjectForm.js")
+    script(src="https://momentjs.com/downloads/moment.min.js")

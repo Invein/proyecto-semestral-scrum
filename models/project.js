@@ -5,11 +5,13 @@ const mongoosePaginate = require('mongoose-paginate');
 const projectMemberSchema = Schema({
     member: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     role: {
         type: String,
-        enum: ['developer', 'tester', 'executive', 'scrum-master', 'product-owner']
+        enum: ['developer', 'tester', 'executive', 'scrum-master', 'product-owner'],
+        required: true
     }
 });
 
@@ -52,13 +54,21 @@ const schema = Schema({
         required: true
     },
     requestDate: {
-        type: Date
+        type: Date,
+        required: true
     },
     startDate: {
-        type: Date
+        type: Date,
+        required: true
     },
     description: {
-        type: String
+        type: String,
+        required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     teamMembers: {
         type: [projectMemberSchema]
