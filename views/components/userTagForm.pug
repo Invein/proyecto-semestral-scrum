@@ -1,0 +1,19 @@
+div(id="user-tag-form-container")
+    form(id="user-tag-form" class="form")
+        div(class="form-group")
+            label(for="user-select") Usuario:
+            <select class="form-control" id="user-select" name="member">
+                each user in data.users
+                    option(value=user._id) #{user.fullName}
+            </select>
+        div(class="form-group")
+            label(for="role") Rol:            
+            select(id="role" class="form-control" name="role")
+                option developer
+                option scrum-master
+                option tester
+                option product-owner
+                option executive
+        div(id="info-member")
+        div(class="text-xs-center")            
+            input(type="submit" class="btn btn-deep-purple" value="agregar")

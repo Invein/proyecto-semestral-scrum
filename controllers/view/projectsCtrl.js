@@ -2,8 +2,10 @@ const express = require('express');
 const config = require('config');
 const pugLoader = require('../../util/lib/pugLoader');
 const Project = require('../../models/project');
+const User = require('../../models/user');
 const getID = require('../../util/lib/getIdFromToken');
-const ObjectId = require('mongoose').Types.ObjectId;
+
+
 function index(request, response, next) {
     getID(request, (err, userID) => {
         Project.find({})
@@ -36,17 +38,19 @@ function viewOne(request, response, next) {
             .populate('owner')
             .exec(function (err, project) {
                 if (err) {
-                    response.json({ err });
+                    next(err);
                 } else {
                     if (project) {
-                        pugLoader.renderWithUser(request, response, 'view/projects/showOne.pug', { project });
+                        User.find({}).exec((err, users) => {
+                            pugLoader.renderWithUser(request, response, 'view/projects/showOne.pug', { project, users });
+                        });
                     } else {
-                        response.json({ err });
+                        next(new Error("No se obtubo ningun resultado"));
                     }
                 }
             });
     } else {
-        response.json({ err: true });
+        next(new Error("Id de projecto no recibido"));
     }
 }
 

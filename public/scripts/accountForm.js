@@ -45,22 +45,9 @@ $(document).ready(function () {
             }
         },
         messages: {
-            fullName: {
-                required: "Introduzca su nombre completa"
-            },
-            birthdate: {
-                required: "Introduzca su cumpleanos"
-
-            },
-            curp: {
-                required: "Introduzca su CURP"
-            },
-            rfc: {
-                required: "Introduzca su rfc"
-            },
-            address: {
-                required: "Introduzca direccion"
-            },
+            name: {
+                required: "Introduzca un nombre para la habilidad"
+            }
         },
         submitHandler: onSkillSubmit
     });

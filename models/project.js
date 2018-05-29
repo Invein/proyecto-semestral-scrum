@@ -6,7 +6,8 @@ const projectMemberSchema = Schema({
     member: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     role: {
         type: String,

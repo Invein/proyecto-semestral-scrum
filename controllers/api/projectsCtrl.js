@@ -252,9 +252,85 @@ function remove(request, response, next) {
     });
 }
 
+function putTeamMember(request, response, next) {
+    getID(request, (err, userID) => {
+        if (err)
+            return next(err);
+        if (!userID)
+            return next(new Error("no se encontro el usuario"));
+
+        const { member, role } = request.body;
+        const { projectID } = request.params;
+
+        Project.findById(projectID).exec((err, project) => {
+            if (err)
+                return next(err);
+            if (!project)
+                return next(new Error("no se encontro el proyecto"));
+            if (project.owner.toString() != userID)
+                return next(new Error("Debes ser el dueño del proyecto para poder editarlo"));
+
+            // @TODO: Validar que el miembor a añadir no sea el owner y no esté repetido
+            project.teamMembers.push({ member, role });
+            project.save((err, savedProject) => {
+                if (err)
+                    return next(err);
+                if (!savedProject)
+                    return next(new Error("no se pudo guardar el proyecto"));
+                response.json({
+                    error: false,
+                    message: "Miembro añadido",
+                    objs: {}
+                });
+            });
+        });
+    })
+}
+
+function deleteTeamMember(request, response, next) {
+    getID(request, (err, userID) => {
+        if (err)
+            return next(err);
+        if (!userID)
+            return next(new Error("no se encontro el usuario"));
+
+        const { projectID, memberID } = request.params;
+
+        Project.findById(projectID).exec((err, project) => {
+            if (err)
+                return next(err);
+            if (!project)
+                return next(new Error("no se encontro el proyecto"));
+            if (project.owner.toString() != userID)
+                return next(new Error("Debes ser el dueño del proyecto para poder editarlo"));
+
+
+            const filteredTeamMembers = project.teamMembers.filter((teamMember) => {
+                return teamMember.member.toString() != memberID;
+            });
+
+            project.teamMembers = filteredTeamMembers;
+            
+            project.save((err, savedProject) => {
+                if (err)
+                    return next(err);
+                if (!savedProject)
+                    return next(new Error("no se pudo guardar el proyecto"));
+                response.json({
+                    error: false,
+                    message: "Miembro eliminado",
+                    objs: {}
+                });
+            });
+        });
+    })
+}
+
 module.exports = {
     index,
     create,
     update,
-    remove
+    remove,
+    putTeamMember,
+    deleteTeamMember
 };
