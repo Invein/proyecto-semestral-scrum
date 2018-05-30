@@ -396,6 +396,6 @@ a#login-btn {
 .navMain{
     width: 1200px;
 }
-.cardimage{
-
+.headerBack{
+    display: initial;
 }
