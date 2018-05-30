@@ -614,6 +614,8 @@ input#create-btn:hover{
 }
 #messagesDropdown{
     padding-left: 650px;
+    position: absolute;
+    z-index: 500;
 }
 #dropdownmess{
     width: 373px;
