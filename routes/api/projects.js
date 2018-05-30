@@ -9,5 +9,7 @@ router.put('/:id', projecstCtrl.update);
 router.delete('/:id', projecstCtrl.remove);
 router.put('/:projectID/teamMembers', projecstCtrl.putTeamMember);
 router.delete('/:projectID/teamMembers/:memberID', projecstCtrl.deleteTeamMember);
+router.put('/:projectID/productBacklog', projecstCtrl.putProductBacklog);
+router.delete('/:projectID/productBacklog/:historyID', projecstCtrl.deleteProductBacklog);
 
 module.exports = router;

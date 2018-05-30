@@ -282,7 +282,7 @@ function putTeamMember(request, response, next) {
                 });
             });
         });
-    })
+    });
 }
 
 function deleteTeamMember(request, response, next) {
@@ -324,11 +324,56 @@ function deleteTeamMember(request, response, next) {
     })
 }
 
+function deleteProductBacklog(request, response, next) {
+
+}
+
+function putProductBacklog(request, response, next) {
+    getID(request, (err, userID) => {
+        if (err)
+            return response.json({ error: err, objs: {}, message: "" });
+        if (!userID)
+            return response.json({ error: true, message: "no se encontro el usuario", objs: {} });
+
+        const history = JSON.parse(request.body.history);
+        const { projectID } = request.params;
+
+        Project.findById(projectID).populate('owner').populate('teamMembers.member').exec((err, project) => {
+            if (err)
+                return response.json({ error: err, objs: {}, message: "" });
+            if (!project)
+                return response.json({ error: true, message: "no se encontro el proyecto", objs: {} });
+            if (project.owner.id != userID) {
+                const member = project.teamMembers.find(teamMember => teamMember.member.id == userID);
+                if (!member)
+                    return response.json({ error: true, message: "No eres miembro del proyecto", objs: {} });
+                if (member.role == "developer" || member.role == "executive" || member.role == "tester")
+                    return response.json({ error: true, message: "No se cuenta con suficientes pivilegios para editar el proyecto", objs: {} });
+            }
+
+            project.productBacklog.push(history);
+            project.save((err, savedProject) => {
+                if (err)
+                    return next(err);
+                if (!savedProject)
+                    return response.json({ error: true, message: "no se pudo guardar el proyecto", objs: {} });
+                response.json({
+                    error: false,
+                    message: "Historia añadida",
+                    objs: {}
+                });
+            });
+
+        });
+    })
+}
 module.exports = {
     index,
     create,
     update,
     remove,
     putTeamMember,
-    deleteTeamMember
+    deleteTeamMember,
+    putProductBacklog,
+    deleteProductBacklog
 };

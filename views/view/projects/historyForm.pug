@@ -1,0 +1,84 @@
+block content
+        form(id="history-form")
+            <div id="container" class="container">
+                <div class="col-sm-8 col-sm-offset-2 main">   
+                    <div id="formregister" class="col-sm-12">
+                        <h1 id="titleregister">Historia de usuario</h1>                                        
+                        <div id="front-form"  class="form" >
+                            <div class="form-group">
+                                <label for="userpriority">Prioridad:</label>
+                                <select class="form-control" id="userpriority" name="priority">
+                                    <option>baja</option>
+                                    <option>media</option>
+                                    <option>alta</option>
+                                    <option>critica</option>                                
+                                </select>
+                                <label for="usersize">Tamaño:</label>
+                                <select class="form-control" id="usersieze" name="size">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>                                
+                                    <option>5</option>                                
+                                    <option>8</option>
+                                    <option>13</option>
+                                    <option>21</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="userhistory">Narrativa de historia:</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usercomo">Como:</label>
+                                <textarea class="form-control" rows="3" id="usercomo" name="how"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userquiero">Quiero:</label>
+                                <textarea class="form-control" rows="3" id="userquiero" name="want"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userde">De tal manera:</label>
+                                <textarea class="form-control" rows="3" id="userde" name="way"></textarea>
+                            </div>                                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="container" class="container">
+                <div class="col-sm-8 col-sm-offset-2 main">               
+                    <div id="formregister" class="col-sm-12">                                        
+                        <div id="back-form"  class="form" >
+                            <div class="form-group">
+                                <label for="usercriteria">Criterios de aceptacion:</label>                           
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usercomo">Dado:</label>
+                                <textarea class="form-control" rows="3" id="userdado" name="given"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usercuando">Cuando:</label>
+                                <textarea class="form-control" rows="3" id="usercuando" name="when"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userentonces">Entonces:</label>
+                                <textarea class="form-control" rows="3" id="userentonces" name="then"></textarea>
+                            </div>
+                        
+                            <div class="text-xs-center">
+                                <a id="cancel-btn" class="btn btn-primary">Cancelar</a>
+                                <input type="submit" id="submit-btn" name="submit-btn" value="Agregar" class="btn btn-deep-purple">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script src="scripts/loginForm.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>      

@@ -37,12 +37,10 @@ const historySchema = Schema({
         }
     },
     size: {
-        type: String,
-        required: true
+        type: String
     },
     priority: {
-        type: String,
-        required: true
+        type: String
     }
 });
 
@@ -71,52 +69,36 @@ const schema = Schema({
     teamMembers: {
         type: [projectMemberSchema]
     },
-    scrum: {
-        type: {
-            productBacklog: {
+    productBacklog: {
+        type: [historySchema]
+
+    },
+    releaseBacklog: {
+        type: [historySchema]
+    },
+    sprints: {
+        type: [{
+            sprintBacklog: {
                 type: {
                     histories: [historySchema]
                 }
             },
-            releaseBacklog: {
+            todo: {
                 type: {
-                    histories: [String]
+                    histories: [historySchema]
                 }
             },
-            sprints: {
-                type: [{
-                    sprintBacklog: {
-                        type: {
-                            histories: [String]
-                        }
-                    },
-                    todo: {
-                        type: {
-                            histories: [String]
-                        }
-                    },
-                    doing: {
-                        type: {
-                            histories: [String]
-                        }
-                    },
-                    done: {
-                        type: {
-                            histories: [String]
-                        }
-                    }
-                }]
+            doing: {
+                type: {
+                    histories: [historySchema]
+                }
+            },
+            done: {
+                type: {
+                    histories: [historySchema]
+                }
             }
-        },
-        default: {
-            productBacklog: {
-                histories: []
-            },
-            releaseBacklog: {
-                histories: []
-            },
-            sprints: []
-        }
+        }]
     }
 });
 
