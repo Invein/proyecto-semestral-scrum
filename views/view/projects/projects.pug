@@ -6,12 +6,13 @@ block content
         <div class="row" id="project-container">
             each project in data.projects                                
                 div(id=project._id class="col-lg-4")                    
-                    <div class="card cardimage pointer" style="width: 24rem;" >
-                        <div class="card-body ">
-                            <b class="card-text">#{project.name}</b>
-                            <p>#{project.description}</p>
+                    <div class="card border-primary">
+                      <div class="card-header">#{project.name}</div>
+                        <div class="card-body">
+                            <p id="bodytext">#{project.description}</p>
                         </div>
                     </div>
+                    
             div(id="add-project-btn" class="col-lg-4")                
                 <div class="card cardimage pointer" style="width: 18rem;" >
                     <div class="card-body">
@@ -19,9 +20,6 @@ block content
                     </div>
                 </div>                
         </div>
-    </div>
-    <div class="panel panel-primary">
-        <p> Puto el que lo lea</p>
     </div>
 
     <script src="/scripts/projectsBehavior.js"> </script>

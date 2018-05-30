@@ -10,6 +10,7 @@ if scripts
         script(src=script.src)
 body
 block content
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2 main">
             <div id="leftside" class="col-sm-6 left-side">
@@ -20,13 +21,8 @@ block content
                 <p></p>
                 <p></p>
                 <p></p>
-                <p></p>
-                <p></p>
-                <a class="fb" href="http://deepak646.blogspot.in/" target="_blank">Login With Facebook</a>
-                <a class="tw" href="http://deepak646.blogspot.in/" target="_blank">Login With Twitter</a>
             </div>
             <!--col-sm-6-->
-
             <div class="col-sm-6 right-side">
                 <h1>Login</h1>
                 <p>Don't have an account? Create your account, it takes less than a minute</p>
@@ -47,7 +43,9 @@ block content
                         <div id="info"></div>
                         <input value="Iniciar Sesión" type="submit" id="login-btn" name="login-btn" class="btn btn-deep-purple"/>
                         <a href="#" id="register-btn" name="register-btn" class="btn btn-deep-purple">Registrar<a/>
-
+                        <a class="go fab fa-google-plus-square" href="http://deepak646.blogspot.in/" target="_blank"></a>
+                        <a class="tw fab fa-twitter" href="/auth/google" target="_blank"></a>
+                        <a class="fac fab fa-facebook" href="/auth/google" target="_blank"></a>
                     </div>
                 </form>
                 <!--/Form with header-->
