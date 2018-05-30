@@ -30,6 +30,7 @@ a, a:hover, a:focus {
     border-radius: 0;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    
 }
 
 .navbar-btn {
@@ -60,7 +61,7 @@ i, span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #286090d6;
     color: #fff;
     transition: all 0.3s;
 }
@@ -111,7 +112,8 @@ i, span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #28609000;
+    
 }
 
 #sidebar .sidebar-header strong {
@@ -277,7 +279,7 @@ padding:0px;
 }
 .fb:focus, .fb:hover{color:FFF !important;}
 body{
-background-image:url(http://www.freejpg.com.ar/asset/OLD/comps/f002974.jpg);
+background-image:url(https://juegosrev.com/wp-content/uploads/2017/06/Wood-HD-Wallpapers-Gallery-91-Plus-PIC-WPW5012927.jpg);
 font-family: 'Raleway', sans-serif;
 background-size: cover;
 }
@@ -285,7 +287,7 @@ background-size: cover;
 .left-side{
 	padding:0px 0px 100px;
 	background:#31708f;
-	background-size:cover;
+    background-size:cover;
 }
 .left-side h1{
 	font-size: 70px;
@@ -361,7 +363,7 @@ box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
 }
 #register-btn{
     width: 100px;
-    margin-right: 48px;
+    margin-right: 10px;
 }
 #notepassword{
     padding: 0px;
@@ -381,7 +383,7 @@ a#login-btn {
 }
 #leftside{
     background-image: url("https://freerange.com/wp-content/uploads/2017/05/stefan-stefancik-square.jpg");
-    height: 514px;
+    height: 589px;
 }
 #loginwith{
     color: black;
@@ -542,4 +544,45 @@ html{
 }
 .lmdd-block{
   box-sizing:border-box;
+}
+#bodydescription{
+    line-height: 1;
+    font-size: 14px;
+    padding: .75rem 1.25rem;
+    color: white;
+}
+.projectscards{
+    background-color: #286090d6;
+    margin-right: 5px;
+    max-width: 34rem;
+    margin-bottom: 5px;
+    height: 34rem;
+    color:white;
+}
+/*.projectsadd{
+    background-color: #286090d6;
+    margin-right: 5px;
+}*/
+.card-header{
+    color: white;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: .75rem 1.25rem;
+    border-color: white;
+}
+.projectscards:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
+input#create-btn{
+    margin-bottom: 15px;
+}
+.container {
+    width: 1060px;
+}
+input#create-btn:hover{
+    color: #84d14e;
+    background-color: white;
+    border: 1px solid;
+}
+.tag:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }

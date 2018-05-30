@@ -29,6 +29,7 @@
     border-radius: 10px;
     margin: 10px 50px;
     padding-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .add-tag:hover{
@@ -44,4 +45,5 @@
     margin: 10px 50px;
     font-weight: 700;
     font-size: 14px;
+    margin-top: 50px;
 }

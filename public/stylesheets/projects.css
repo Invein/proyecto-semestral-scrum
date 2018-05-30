@@ -17,7 +17,7 @@
     font-size: 20px;
 }
 b{
-    font-size: 24px;
+    font-size: 18px;
 }
 p{
     color: black
@@ -33,4 +33,19 @@ p{
 
 #user-tag-form-container{
     display: none;
+}
+.navbar{
+    width: 1080px;
+    margin-top: -69px;
+    margin-left: -20px;
+}
+ul.nav.navbar-nav{
+    padding-left: 360px;
+}
+button#sidebarCollapse{
+    position: relative;
+    z-index: 100;
+}
+nav.navbar.navbar-default.navMain.active{
+width: 1251px;
 }
