@@ -38,7 +38,7 @@ function create(request, response, next) {
             request.json({ error: true, message: "Error al buscar el id del usuario", objs: err });
         } else {
             if (ownerID) {
-                const { name, requestDate, startDate, description, teamMembers, scrum } = request.body;
+                const { name, requestDate, startDate, description, scrum } = request.body;
 
                 let project = new Project();
 
@@ -46,8 +46,6 @@ function create(request, response, next) {
                 requestDate && (project.requestDate = requestDate);
                 startDate && (project.startDate = startDate);
                 description && (project.description = description);
-                teamMembers && (project.teamMembers = teamMembers);
-                scrum && (project.scrum = scrum);
                 ownerID && (project.owner = ownerID);
 
                 project.save((err, obj) => {
@@ -255,20 +253,20 @@ function remove(request, response, next) {
 function putTeamMember(request, response, next) {
     getID(request, (err, userID) => {
         if (err)
-            return next(err);
+            return response.json({ error: err, objs: {}, message: "" });
         if (!userID)
-            return next(new Error("no se encontro el usuario"));
+            return response.json({ error: true, message: "no se encontro el usuario", objs: {} });
 
         const { member, role } = request.body;
         const { projectID } = request.params;
 
         Project.findById(projectID).exec((err, project) => {
             if (err)
-                return next(err);
+                return response.json({ error: err, objs: {}, message: "" });
             if (!project)
-                return next(new Error("no se encontro el proyecto"));
+                return response.json({ error: true, message: "no se encontro el proyecto", objs: {} });
             if (project.owner.toString() != userID)
-                return next(new Error("Debes ser el dueño del proyecto para poder editarlo"));
+                return response.json({ error: true, message: "Debes ser el dueño del proyecto para poder editarlo", objs: {} });
 
             // @TODO: Validar que el miembor a añadir no sea el owner y no esté repetido
             project.teamMembers.push({ member, role });
@@ -276,7 +274,7 @@ function putTeamMember(request, response, next) {
                 if (err)
                     return next(err);
                 if (!savedProject)
-                    return next(new Error("no se pudo guardar el proyecto"));
+                    return response.json({ error: true, message: "no se pudo guardar el proyecto", objs: {} });
                 response.json({
                     error: false,
                     message: "Miembro añadido",
@@ -292,7 +290,7 @@ function deleteTeamMember(request, response, next) {
         if (err)
             return next(err);
         if (!userID)
-            return next(new Error("no se encontro el usuario"));
+            return response.json({ error: true, message: "no se encontro el usuario", objs: {} });
 
         const { projectID, memberID } = request.params;
 
@@ -300,9 +298,9 @@ function deleteTeamMember(request, response, next) {
             if (err)
                 return next(err);
             if (!project)
-                return next(new Error("no se encontro el proyecto"));
+                return response.json({ error: true, message: "no se encontro el proyecto", objs: {} });
             if (project.owner.toString() != userID)
-                return next(new Error("Debes ser el dueño del proyecto para poder editarlo"));
+                return response.json({ error: true, message: "Debes ser el dueño del proyecto para poder editarlo", objs: {} });
 
 
             const filteredTeamMembers = project.teamMembers.filter((teamMember) => {
@@ -310,12 +308,12 @@ function deleteTeamMember(request, response, next) {
             });
 
             project.teamMembers = filteredTeamMembers;
-            
+
             project.save((err, savedProject) => {
                 if (err)
                     return next(err);
                 if (!savedProject)
-                    return next(new Error("no se pudo guardar el proyecto"));
+                    return response.json({ error: true, message: "no se pudo guardar el proyecto", objs: {} });
                 response.json({
                     error: false,
                     message: "Miembro eliminado",

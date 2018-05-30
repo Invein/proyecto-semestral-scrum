@@ -48,7 +48,7 @@ $(document).ready(function () {
                 const { error, objs, message } = response;
 
                 if (error) {
-                    $("#info").html("<div class='alert alert-danger'>" + ( error.message || objs.message || message)  + "</div>");
+                    $("#info").html("<div class='alert alert-danger'>" + (error.message || objs.message || objs.errmsg || message) + "</div>");
                 } else {
                     renderView({ path: "projects/" + objs._id });
                 }
