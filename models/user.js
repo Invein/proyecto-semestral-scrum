@@ -42,6 +42,12 @@ const schema = Schema({
     },
     salt: {
         type: String
+    },
+    extID: {
+        type: String
+    },
+    extToken: {
+        type: String
     }
 });
 
