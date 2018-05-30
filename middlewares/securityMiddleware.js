@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const User = require('../models/user');
 
 function verifyToken(request, response, next) {
   const token = request.body.token || request.query.token || request.headers['x-access-token'];
@@ -25,18 +26,17 @@ function verifyToken(request, response, next) {
   }
 }
 
-function verifyTokenOnViews(request, response, next) {  
+function verifyTokenOnViews(request, response, next) {
   const token = request.body.token || request.query.token || request.headers['x-access-token'] || request.headers.token;
   if (token) {
     jwt.verify(token, config.get('api.key'), (err, decoded) => {
-      if (err) {        
+      if (err) {
         response.redirect('/login');
       } else {
         next();
       }
     });
   } else {
-    //pugLoader(response, "view/index/login");
     response.redirect('/login');
   }
 }
