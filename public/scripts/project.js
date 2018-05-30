@@ -43,7 +43,7 @@ $(document).ready(function () {
                     const { error, objs, message } = response;
 
                     if (error) {
-                        $("#info-member").html("<div class='alert alert-danger'>" + (error.message || objs.message || message) + "</div>");
+                        $("#info-members").html("<div class='alert alert-danger'>" + (error.message || objs.message || message) + "</div>");
                     } else {
                         $("#" + tag.id).parent().parent().remove();
                     }
@@ -51,4 +51,8 @@ $(document).ready(function () {
             });
         }
     })
+
+    $("#product-backlog-btn").click(function () {
+        window.location.href =  renderView({ path: 'projects/' + $("span#project-id").text() + "/productBacklog" });
+    });
 });

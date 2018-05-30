@@ -60,8 +60,24 @@ function create(request, response, next) {
     pugLoader.renderWithUser(request, response, 'view/projects/createForm.pug');
 }
 
+function productBacklog(request, response, next) {
+    getID(request, (err, userID) => {
+        const projectID = request.params.projectID;
+        Project.findById(projectID)
+            .populate('owner')
+            .populate('teamMembers.member')
+            .exec((err, project) => {
+                if (err)
+                    return next(err);
+                else
+                    return pugLoader.renderWithUser(request, response, 'view/projects/productBacklog.pug', { project });
+            });
+    });
+}
+
 module.exports = {
     index,
     viewOne,
-    create
+    create,
+    productBacklog
 };

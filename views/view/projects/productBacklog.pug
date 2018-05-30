@@ -1,0 +1,7 @@
+extend ../../layout
+
+block content
+    div()
+        each history in data.project.scrum.productBacklog.hitories
+            div #{history}
+    script(src="/scripts/project.js")

@@ -107,6 +107,15 @@ const schema = Schema({
                     }
                 }]
             }
+        },
+        default: {
+            productBacklog: {
+                histories: []
+            },
+            releaseBacklog: {
+                histories: []
+            },
+            sprints: []
         }
     }
 });
