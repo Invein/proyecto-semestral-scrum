@@ -20,52 +20,57 @@ block content
         </div><!-- /.navbar-collapse -->
     </nav>
     div()
-        button(class="btn btn-primary" id="add-history") Agregar Historia de Usuario
-        div(id="history-form-container" style="display: none;")      
-            include ./historyForm.pug
-        each history in data.project.productBacklog
-            <div class="card-containerBack">
-                <div class="cardBack row card">
-                    <div class="front col">
-                        <div>
-                            <b class="productBackB">Narrativa</b>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Prioridad | Tamaño</b>
-                            <p class="productBackSpan"> #{history.priority} | #{history.size}</p>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Como</b>
-                            <p class="productBackSpan"> #{history.narrative.how}</p>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Quiero</b>
-                            <p class="productBackSpan"> #{history.narrative.want}</p>
-                        </div>
-                        <div>
-                        <b class="productBackTitle">De Tal Manera</b>
-                            <p class="productBackSpan"> #{history.narrative.way}</p>
-                        </div>
-                    </div>
-                    <div class="back">
-                        <div>
-                            <b class="productBackB2">Criterios de aceptacion</b>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Dado</b>
-                            <p class="productBackSpan2"> #{history.criteria.given}</p>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Cuando</b>
-                            <p class="productBackSpan2"> #{history.criteria.when}</p>
-                        </div>
-                        <div>
-                            <b class="productBackTitle">Entonces</b>
-                            <p class="productBackSpan2"> #{history.criteria.then}</p>
+        <div class="container">
+            button(class="btn btn-primary" id="add-history") Agregar Historia de Usuario
+            div(id="history-form-container" style="display: none;")      
+                include ./historyForm.pug
+            <div class="row">
+                each history in data.project.productBacklog
+                    <div class="card-containerBack col-lg-6">
+                        <div class="cardBack row card">
+                            <div class="front col">
+                                <div>
+                                    <b class="productBackB">Narrativa</b>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Prioridad | Tamaño</b>
+                                    <p class="productBackSpan"> #{history.priority} | #{history.size}</p>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Como</b>
+                                    <p class="productBackSpan"> #{history.narrative.how}</p>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Quiero</b>
+                                    <p class="productBackSpan"> #{history.narrative.want}</p>
+                                </div>
+                                <div>
+                                <b class="productBackTitle">De Tal Manera</b>
+                                    <p class="productBackSpan"> #{history.narrative.way}</p>
+                                </div>
+                            </div>
+                            <div class="back">
+                                <div>
+                                    <b class="productBackB2">Criterios de aceptacion</b>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Dado</b>
+                                    <p class="productBackSpan2"> #{history.criteria.given}</p>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Cuando</b>
+                                    <p class="productBackSpan2"> #{history.criteria.when}</p>
+                                </div>
+                                <div>
+                                    <b class="productBackTitle">Entonces</b>
+                                    <p class="productBackSpan2"> #{history.criteria.then}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>    
+        </div>
 
     script(src="/scripts/project.js")
     script(src="/scripts/cardHistoryBehavior.js")
