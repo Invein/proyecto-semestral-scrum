@@ -165,7 +165,10 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #286090d6;
+}
+ul.dropdown-menu{
+    background: #286090;
 }
 
 ul.CTAs {
@@ -556,8 +559,9 @@ html{
     margin-right: 5px;
     max-width: 34rem;
     margin-bottom: 5px;
-    height: 34rem;
+    height: auto;
     color:white;
+    cursor: pointer;
 }
 /*.projectsadd{
     background-color: #286090d6;
@@ -585,6 +589,62 @@ input#create-btn:hover{
 }
 .tag:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
 .headerBack{
     display: initial;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #eee;
+    background-color: #286090d6;
+    border-radius: 50px;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    color: #f5f5f5;
+    background-color: #286090;
+    border-radius: 50px;
+}
+.dropdown-menu>li>a{
+    color:white;
+}
+#formnavbar{
+    margin-top: -21px;
+    padding-left: 777px;
+    z-index: 50;
+    position: absolute;
+}
+#messagesDropdown{
+    padding-left: 650px;
+}
+#dropdownmess{
+    width: 373px;
+    margin-left: 350px;
+    padding: 13px;
+}
+#alertsDropdown {
+    padding-left: 650px;
+}
+#dropdownalert{
+    width: 373px;
+    margin-left: 350px;
+    padding: 13px;
+}
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before{
+    padding-right: 330px;
+    color: white;
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #286090d6;
+    background: #28609000;
+}
+.fa-circle:before {
+    content: "\f111";
+    margin-left: -20px;
+    font-size: 10px;
+}
+#navbarindex{
+    background-color: #286090d6
+}
+a.fas.fa-search{
+    color: white;
+    font-size: 23px;
 }

@@ -25,7 +25,7 @@ var server = http.createServer(app);
 /*Conexión a base de datos*/
 //mongodb://<user?>:<password?>@<dominio>:<puerto>/<base de datos>
 //const uri = 'mongodb://localhost:27017/videoclub';
-const uri = 'mongodb://admin:admin@ds151662.mlab.com:51662/scrum-app-uach';
+const uri = 'mongodb://user:123qwe@ds239930.mlab.com:39930/scrum-uach';
 mongoose.connect(uri);
 const db = mongoose.connection;
 
